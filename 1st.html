@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ari 19th Birthday</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            background-image: url(images/Ari\ background.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.75);
+            color: rgb(0, 0, 0);
+            text-align: center;
+            font-size: 24px;
+            position: relative;
+        }
+
+        .return-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .return-btn i {
+            margin-right: 5px;
+        }
+
+        .return-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            width: 900px;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 30px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.85);
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .image-container {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .text-container {
+            width: 50%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .caption {
+            text-align: left;
+            color: #000;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="return-btn" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Tekan Sini Sayang Kalau Dah Habis
+        </button>
+        Ariana 19th Birthday
+    </header>
+
+    <audio id="birthdaySong" autoplay>
+        <source src="audio/christina-perri-a-thousand-years-official-music-video-128-ytshorts.savetube.me.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="container" id="contentContainer">
+        <div class="image-container">
+            <img id="image" src="images/ari 2.png" alt="Ari 1">
+        </div>
+        <div class="text-container">
+            <div class="caption" id="caption">
+                <h5>Sayang Dania <333</h5>
+                <p>with each heartbeat sayang ,the truth became clear our paths were destined to intertwine forever</p>
+            </div>
+            <button id="nextButton">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            {
+                src: 'images/bus.jpg',
+                title: 'Like me that much ye',
+                text: 'YOURE BEING SO KIND HERE SAYANG,SAYA MACAM WHAT!!!!! KENAPA DIA YANG CARI UNTUK AKU AND YUP SAYA CAIR AT THAT TIME ARGRAGRHAGRRHAHAHGAR'
+            },
+            {
+                src: 'images/3rd.jpg',
+                title: 'Kesian sayang',
+                text: 'It feels like youve weathered so many storms before you found your way to me, and though im not without flaws, I promise to be the one who stays. ill be your last love, your partner through it all, and InshaAllah, one day, ill stand by your side as your husband, loving you endlessly.'
+            },
+            {
+                src: 'images/1st.jpg',
+                title: 'The First Paragraph that you sent me',
+                text: 'Sayang, when I first read the words you wrote, I could tell you already had feelings for me, and in that moment, I had already fallen in love with you too, sayang'
+            },
+            {
+                src: 'images/2nd.jpg',
+                title: 'About your reposts',
+                text: 'till today, i still find myself looking at your reposts right before i sleep, sayang...i do not know why, but they give me a feeling i cannot quite put into words...maybe there is something you do not feel like sharing with me, so you express it through them... but deep down, if ever you want to let me in on your feelings or what you have been through, i am always here for you, okay sayang<3333'
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function updateContent() {
+            const imageElement = document.getElementById('image');
+            const captionElement = document.getElementById('caption');
+            imageElement.src = images[currentIndex].src;
+            captionElement.innerHTML = `<h5>${images[currentIndex].title}</h5><p>${images[currentIndex].text}</p>`;
+        }
+
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateContent();
+        }, 10000);
+
+        document.getElementById('nextButton').addEventListener('click', function() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateContent();
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

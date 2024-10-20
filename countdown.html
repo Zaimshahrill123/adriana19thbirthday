@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ari 19th Birthday</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgba(95, 200, 179, 0.75);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden; 
+            background-image: url(images/Ari\ background.png);
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px; 
+            background-color: rgba(255, 255, 255, 0.75); 
+            color: rgb(0, 0, 0); 
+            text-align: center; 
+            font-size: 24px; 
+            font-weight: bold;
+        }
+
+        /* Style for the timers */
+        .timer {
+            margin: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: 22px;
+            color: #333;
+            width: 800px; 
+        }
+
+       
+    </style>
+</head>
+<body>
+    <header>
+        Ariana's 19th Birthday
+    </header>
+    <audio id="birthdaySong" autoplay>
+        <source src="audio/blessed-128-ytshorts.savetube.me.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    
+    
+    <div class="timer" id="loveTimer">
+        the dawn of our first adventure: <span id="loveElapsed"></span>
+    </div>
+
+    
+    <div class="timer" id="ageTimer">
+        chronicles of sayang life: <span id="ageElapsed"></span>
+    </div>
+
+    <script>
+        function wrapUp() {
+            
+            alert("Thanks, sayang, for spending your time with me. I hope you enjoy this little effort of mine.");
+            
+            document.getElementById("nextButton").style.display = "block";
+        }
+
+        function goToNextPage() {
+            window.location.href = "countdown.html"; 
+        }
+
+        
+        function startLoveTimer() {
+            const startDate = new Date("September 27, 2024 00:00:00").getTime();
+            const loveTimer = setInterval(function() {
+                const now = new Date().getTime();
+                const elapsed = now - startDate;
+
+                const days = Math.floor(elapsed / (1000 * 60 * 60 * 24));
+                const years = Math.floor(days / 365);
+                const remainingDays = days % 365;
+                const hours = Math.floor((elapsed % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((elapsed % (1000 * 60)) / 1000);
+
+                document.getElementById("loveElapsed").innerHTML = `${years}y ${remainingDays}d ${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+
+        
+        function startAgeTimer() {
+            const birthDate = new Date("October 17, 2005 00:00:00").getTime();
+            const ageTimer = setInterval(function() {
+                const now = new Date().getTime();
+                const elapsed = now - birthDate;
+
+                const days = Math.floor(elapsed / (1000 * 60 * 60 * 24));
+                const years = Math.floor(days / 365);
+                const remainingDays = days % 365;
+                const hours = Math.floor((elapsed % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((elapsed % (1000 * 60)) / 1000);
+
+                document.getElementById("ageElapsed").innerHTML = `${years}y ${remainingDays}d ${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+
+        
+        window.onload = function() {
+            startLoveTimer();
+            startAgeTimer();
+        };
+    </script>
+</body>
+</html>

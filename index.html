@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Button with Ripple Effect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: radial-gradient(circle, rgba(127, 255, 212, 0.75), aquamarine);
+            background-repeat: no-repeat;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .button {
+            font-family: 'Bungee', cursive;
+            font-size: 1.2rem;
+            position: relative;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            background: palevioletred;
+            border: 2px solid #d81b60; /* Darker shade of palevioletred */
+            padding: 30px 60px;
+            border-radius: 45px;
+            color: white;
+            overflow: hidden;
+            box-shadow: 0 2px 4px darkgray;
+            transition: all 0.2s ease-in;
+            z-index: 1;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle closest-side, white, rgba(255, 182, 193, 0.7));
+            width: 1px;
+            height: 1px;
+            z-index: 3;
+            animation: ripple 0.5s ease-in;
+        }
+
+        .button:hover {
+            transform: scale(1.01);
+            box-shadow: 0 6px 4px darkgray;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0;
+            }
+            75% {
+                transform: scale(450, 450);
+                opacity: 0.75;
+            }
+            100% {
+                transform: scale(700, 700);
+                opacity: 0;
+            }
+        }
+
+        @keyframes buttonClick {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Modal styles */
+        .modal-content {
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #passcodeInput {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button class="button">Start</button>
+
+    <!-- Modal for Passcode Input -->
+    <div class="modal fade" id="passcodeModal" tabindex="-1" aria-labelledby="passcodeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passcodeModalLabel">Enter Passcode</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="password" id="passcodeInput" class="form-control" placeholder="Enter passcode" />
+                </div>
+                <div class="modal-footer">
+                    <button id="submitPasscode" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const button = document.querySelector('.button');
+        const passcodeModal = $('#passcodeModal');
+        const submitPasscode = document.getElementById('submitPasscode');
+        const passcodeInput = document.getElementById('passcodeInput');
+        const correctPasscode = '171005';
+
+        function materializeEffect(event) {
+            const circle = document.createElement('div');
+            const x = event.layerX;
+            const y = event.layerY;
+            circle.classList.add('circle');
+            circle.style.left = `${x}px`;
+            circle.style.top = `${y}px`;
+            this.appendChild(circle);
+
+            // Remove the circle after animation
+            circle.addEventListener('animationend', () => {
+                circle.remove();
+            });
+
+           
+            button.style.animation = 'buttonClick 0.5s ease';
+            button.addEventListener('animationend', () => {
+                button.style.animation = ''; // Reset the animation
+            });
+
+            
+            passcodeModal.modal('show');
+        }
+
+        button.addEventListener('click', materializeEffect);
+
+        
+        submitPasscode.onclick = function() {
+            const enteredPasscode = passcodeInput.value;
+            if (enteredPasscode === correctPasscode) {
+                window.location.href = "homepage.html"; 
+            } else {
+                alert("Your birthdate sayang"); 
+                passcodeInput.value = ''; 
+            }
+        }
+    </script>
+</body>
+</html>

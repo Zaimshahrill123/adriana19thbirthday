@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ari 19th Birthday</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgba(95, 200, 179, 0.75);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            background-image: url(images/Ari\ background.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.75);
+            color: rgb(0, 0, 0);
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .container {
+            width: 900px; 
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 30px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.85); 
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .image-container {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .text-container {
+            width: 50%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .caption {
+            text-align: left;
+            color: #000;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        .return-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .return-btn i {
+            margin-right: 5px;
+        }
+
+        .return-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="return-btn" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i> Tekan Sini Sayang Kalau Dah Habis
+        </button>
+        Ariana 19th Birthday
+    </header>
+
+    
+    <audio id="birthdaySong" autoplay>
+        <source src="audio/gigi-perez-sailor-song-official-audio-128-ytshorts.savetube.me.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="container" id="contentContainer">
+        <div class="image-container">
+            <img id="image" src="images/Ari1.png" alt="Ari 1">
+        </div>
+        <div class="text-container">
+            <div class="caption" id="caption">
+                <h5>Sayang Ariana <333</h5>
+                <p>Our first conversation, and the moment I fell for you.</p>
+            </div>
+            <button id="nextButton">Next</button>
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            {
+                src: 'images/insta.jpg',
+                title: 'On Instagram',
+                text: 'Eh siapa yang duduk sebelah awak tu baby,and from here awak mintak maaf tu buat saya fell in love with you sayang..'
+            },
+            {
+                src: 'images/whatsapp.jpg',
+                title: 'On Whatsapp',
+                text: 'Till this day saya tak jadi smpp hmmmm..But saya okay je saya ada gf mpp yeayyyyy'
+            },
+            {
+                src: 'images/iM.jpg',
+                title: 'On Imessage',
+                text: 'iMessage hater ye sayang,tapi ni cute hehe'
+            },
+            {
+                src: 'images/Snapchat.jpg',
+                title: 'On Snapchat',
+                text: 'woop woop ada orang accept saya punya request,take a guess who made the first move hehe'
+            }
+        ];
+
+        let currentIndex = 0;
+
+        
+        function updateContent() {
+            const imageElement = document.getElementById('image');
+            const captionElement = document.getElementById('caption');
+            imageElement.src = images[currentIndex].src;
+            captionElement.innerHTML = `<h5>${images[currentIndex].title}</h5><p>${images[currentIndex].text}</p>`;
+        }
+
+       
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateContent();
+        }, 10000); // 10 seconds
+
+        
+        document.getElementById('nextButton').addEventListener('click', function() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateContent();
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
